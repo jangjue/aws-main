@@ -23,15 +23,7 @@ table = 'employee'
 
 
 @app.route("/", methods=['GET', 'POST'])
-def home():
-    db_conn = connections.Connection(
-    host=customhost,
-    port=3306,
-    user=customuser,
-    password=custompass,
-    db=customdb
 
-)
     select_emp = "SELECT * FROM employee"
     cursor = db_conn.cursor()
     cursor.execute(select_emp)
@@ -60,23 +52,13 @@ def searchEmp():
 
 
 @app.route("/addemp", methods=['POST'])
-def AddEmp():
-    db_conn = connections.Connection(
-    host=customhost,
-    port=3306,
-    user=customuser,
-    password=custompass,
-    db=customdb
 
-)
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']
-    phone = request.form['phone']
-    position = request.form['position']
-    department = request.form['department']
-    salary = request.form['salary']
+    phoneno = request.form['phoneno']
+    password = request.form['password']
     emp_image_file = request.files['emp_image_file']
     checkIn = "0000-00-00 00:00:00"
 
@@ -126,15 +108,6 @@ def AddEmp():
 
 
 @app.route("/searchemp",methods=['POST','GET'])
-def SearchEmp():
-    db_conn = connections.Connection(
-    host=customhost,
-    port=3306,
-    user=customuser,
-    password=custompass,
-    db=customdb
-
-)
     emp_id = request.form['emp_id']
 
     select_emp = "SELECT * FROM employee WHERE emp_id = %(emp_id)s"
@@ -160,15 +133,7 @@ def SearchEmp():
     
 
 @app.route("/delete",methods=['POST','GET'])
-def deleteEmp():
-    db_conn = connections.Connection(
-    host=customhost,
-    port=3306,
-    user=customuser,
-    password=custompass,
-    db=customdb
 
-)
     emp_id = request.form['emp_id']
     select_emp = "SELECT * FROM employee WHERE emp_id = %(emp_id)s"
     delete_emp = "DELETE FROM employee WHERE emp_id = %(emp_id)s"
@@ -194,15 +159,6 @@ def deleteEmp():
 
     
 @app.route("/edit",methods=['POST','GET'])
-def editEmp():
-    db_conn = connections.Connection(
-    host=customhost,
-    port=3306,
-    user=customuser,
-    password=custompass,
-    db=customdb
-
-)
     emp_id = request.form['emp_id']
     select_emp = "SELECT * FROM employee WHERE emp_id = %(emp_id)s"
     cursor = db_conn.cursor()
@@ -225,15 +181,7 @@ def editEmp():
     return render_template("editEmployee.html",result=result,url=url)
 
 @app.route("/editemp",methods=['POST','GET'])
-def EditEmp():
-    db_conn = connections.Connection(
-    host=customhost,
-    port=3306,
-    user=customuser,
-    password=custompass,
-    db=customdb
 
-)
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
