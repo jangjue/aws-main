@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from pymysql import connections
+from flask_login import UserMixin, login_user, LoginManager, login_required, logour_user, current_user
 import os
 import boto3
 from config import *
@@ -18,8 +19,12 @@ db_conn = connections.Connection(
     db=customdb
 
 )
+
+class Users(db.Model, UserMixin):
+    id = db_conn.Column(db_conn.Integer,primary_key=True)
+    name = db
 output = {}
-table = 'employee'
+table = 'employee',
 
 
 @app.route("/", methods=['GET', 'POST'])
