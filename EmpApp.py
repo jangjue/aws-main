@@ -134,7 +134,7 @@ def SearchEmp():
     
 
 @app.route("/delete",methods=['POST','GET'])
-
+def deleteEmp():
     emp_id = request.form['emp_id']
     select_emp = "SELECT * FROM employee WHERE emp_id = %(emp_id)s"
     delete_emp = "DELETE FROM employee WHERE emp_id = %(emp_id)s"
