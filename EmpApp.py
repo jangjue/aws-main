@@ -23,6 +23,7 @@ table = 'employee'
 
 
 @app.route("/", methods=['GET', 'POST'])
+def home():
     select_emp = "SELECT * FROM employee"
     cursor = db_conn.cursor()
     cursor.execute(select_emp)
@@ -51,7 +52,7 @@ def searchEmp():
 
 
 @app.route("/addemp", methods=['POST'])
-
+def AddEmp():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
@@ -107,6 +108,7 @@ def searchEmp():
 
 
 @app.route("/searchemp",methods=['POST','GET'])
+def SearchEmp():
     emp_id = request.form['emp_id']
 
     select_emp = "SELECT * FROM employee WHERE emp_id = %(emp_id)s"
