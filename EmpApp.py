@@ -60,7 +60,6 @@ def AddEmp():
     phoneno = request.form['phoneno']
     password = request.form['password']
     emp_image_file = request.files['emp_image_file']
-    checkIn = "0000-00-00 00:00:00"
 
     select_stmt = "SELECT * FROM employee"
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s)"
@@ -160,6 +159,7 @@ def deleteEmp():
 
     
 @app.route("/edit",methods=['POST','GET'])
+def editEmp():
     emp_id = request.form['emp_id']
     select_emp = "SELECT * FROM employee WHERE emp_id = %(emp_id)s"
     cursor = db_conn.cursor()
@@ -182,15 +182,13 @@ def deleteEmp():
     return render_template("editEmployee.html",result=result,url=url)
 
 @app.route("/editemp",methods=['POST','GET'])
-
+def EditEmp():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']
-    phone = request.form['phone']
-    position = request.form['position']
-    department = request.form['department']
-    salary = request.form['salary']
+    phoneno = request.form['phoneno']
+    password = request.form['password']
     emp_image_file = request.files['emp_image_file']
 
     emp_name = "" + first_name + " " + last_name
