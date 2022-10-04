@@ -20,9 +20,15 @@ db_conn = connections.Connection(
 
 )
 
-class Users(db.Model, UserMixin):
-    id = db_conn.Column(db_conn.Integer,primary_key=True)
-    name = db
+#class Users(db.Model, UserMixin):
+#    id = db_conn.Column(db_conn.Integer,primary_key=True)
+#   name = db_conn.Column(db_conn.String(200),nullable=False)
+#    email = db_conn.Column(db_conn.String(120),nullable=False)
+#    favourite_color = db_conn.Column(db_conn.String(120))
+#    date_added = db_conn.Column(db_conn.DateTime(200),default=datetime)
+#    #Do Some password stuff!
+#    password_hash = db_conn.Column(db_conn.String(128))
+
 output = {}
 table = 'employee',
 
