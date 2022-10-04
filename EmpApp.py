@@ -23,7 +23,6 @@ table = 'employee'
 
 
 @app.route("/", methods=['GET', 'POST'])
-
     select_emp = "SELECT * FROM employee"
     cursor = db_conn.cursor()
     cursor.execute(select_emp)
