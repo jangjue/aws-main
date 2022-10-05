@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from pymysql import connections
 import os
 import boto3
@@ -92,7 +92,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return redirect(url_for('/'))
+    return redirect(url_for('login'))
 
 
 @app.route("/searchemp",methods=['POST','GET'])
@@ -179,7 +179,7 @@ def EditEmp():
     phone_no = request.form['phoneno']
     emp_image_file = request.files['emp_image_file']
 
-    update_sql = "UPDATE employee set first_name =  %s , last_name = %s , email =  %s, phone =  %s , position = %s , department =  %s, salary =  %s WHERE emp_id =  %s"
+    update_sql = "UPDATE employee set first_name =  %s , last_name = %s , email =  %s, phone_no =  %s , WHERE emp_id =  %s"
     cursor = db_conn.cursor()
 
     try:
