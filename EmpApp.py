@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect
 from pymysql import connections
 import os
 import boto3
@@ -92,7 +92,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return redirect(url_for('/'),name=emp_name)
+    return redirect('/',name=emp_name)
 
 
 @app.route("/searchemp",methods=['POST','GET'])
