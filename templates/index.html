@@ -110,22 +110,22 @@
             </nav>
             <!-- Navbar End -->
             {% if alert == True%}
-                {%if edit == True%}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="fa fa-exclamation-circle me-2"></i>Sussessful Update {{name}} in the database 
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {%elif delete == True%}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="fa fa-exclamation-circle me-2"></i>Sussessful Delete {{name}} from the database
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {%elif add == True%}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="fa fa-exclamation-circle me-2"></i>Sussessful Add {{name}} into database
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {% endif %}
+            {%if edit == True%}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fa fa-exclamation-circle me-2"></i>Sussessful Update {{name}} in the database
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {%elif delete == True%}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fa fa-exclamation-circle me-2"></i>Sussessful Delete {{name}} from the database
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {%elif add == True%}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fa fa-exclamation-circle me-2"></i>Sussessful Add {{name}} into database
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
             {% endif %}
             <!-- Blank Start -->
             <div class="container-fluid pt-5 px-5">
@@ -135,10 +135,9 @@
                             <h6 class="mb-4">All Employee</h6>
                             <div class="d-flex mb-3">
                                 <form action="/editemp" autocomplete="on" method="POST" enctype="multipart/form-data">
-                                </form>
-                                <input class="form-control bg-transparent" type="text" placeholder="Enter Employee ID"
-                                    name="emp_id" id="floatingId">
-                                <button type="submit" class="btn btn-light ms-2">Search</button>
+                                    <input class="form-control bg-transparent" type="text"
+                                        placeholder="Enter Employee ID" name="emp_id" id="floatingId">
+                                    <button type="submit" class="btn btn-light ms-2">Search</button>
                                 </form>
                             </div>
                             <!-- Search function add in-->
