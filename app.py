@@ -20,15 +20,6 @@ db_conn = connections.Connection(
 
 )
 
-#class Users(db.Model, UserMixin):
-#    id = db_conn.Column(db_conn.Integer,primary_key=True)
-#   name = db_conn.Column(db_conn.String(200),nullable=False)
-#    email = db_conn.Column(db_conn.String(120),nullable=False)
-#    favourite_color = db_conn.Column(db_conn.String(120))
-#    date_added = db_conn.Column(db_conn.DateTime(200),default=datetime)
-#    #Do Some password stuff!
-#    password_hash = db_conn.Column(db_conn.String(128))
-
 output = {}
 table = 'employee',
 
@@ -68,7 +59,7 @@ def AddEmp():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']
-    phoneno = request.form['phoneno']
+    phone_no = request.form['phoneno']
     emp_image_file = request.files['emp_image_file']
 
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s)"
@@ -79,7 +70,7 @@ def AddEmp():
 
     try:
 
-        cursor.execute(insert_sql, (emp_id, first_name, last_name, email, phoneno))
+        cursor.execute(insert_sql, (emp_id, first_name, last_name, email, phone_no))
         db_conn.commit()
         emp_name = "" + first_name + " " + last_name
         # Uplaod image file in S3 #
@@ -109,7 +100,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name)
+    return render_template('index.html', name=emp_name)
 
 
 @app.route("/searchemp",methods=['POST','GET'])
@@ -193,17 +184,15 @@ def EditEmp():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']
-    phoneno = request.form['phoneno']
-    password = request.form['password']
+    phone_no = request.form['phoneno']
     emp_image_file = request.files['emp_image_file']
 
-    emp_name = "" + first_name + " " + last_name
     update_sql = "UPDATE employee set first_name =  %s , last_name = %s , email =  %s, phone =  %s , position = %s , department =  %s, salary =  %s WHERE emp_id =  %s"
     cursor = db_conn.cursor()
 
     try:
 
-        cursor.execute(update_sql, ( first_name, last_name, email, phoneno,password,emp_id))
+        cursor.execute(update_sql, ( first_name, last_name, email, phone_no,emp_id))
         db_conn.commit()
         
         emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
@@ -227,7 +216,7 @@ def EditEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('message.html',alert=True,edit=True,name=emp_name)
+    return render_template('index.html',alert=True,edit=True)
 
 
 if __name__ == '__main__':
