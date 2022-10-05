@@ -92,7 +92,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('index.html', name=emp_name)
+    return "/"
 
 
 @app.route("/searchemp",methods=['POST','GET'])
