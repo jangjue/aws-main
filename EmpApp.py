@@ -146,29 +146,6 @@ def deleteEmp():
     except Exception as e:
         return str(e)
 
-    
-@app.route("/edit",methods=['POST','GET'])
-def editEmp():
-    emp_id = request.form['emp_id']
-    select_emp = "SELECT * FROM employee WHERE emp_id = %(emp_id)s"
-    cursor = db_conn.cursor()
-
-    key = "emp-id-" + str(emp_id) + "_image_file"
-
-    url = "https://%s.s3.amazonaws.com/%s" % (custombucket, key)
-    try:
-        cursor.execute(select_emp, {'emp_id': int(emp_id)})
-        for result in cursor:
-            print(result)
-        db_conn.commit()
-        
-    except Exception as e:
-            db_conn.rollback()
-            return str(e)
-
-    finally:
-        cursor.close()
-    return render_template("editEmployee.html",result=result,url=url)
 
 @app.route("/editemp",methods=['POST','GET'])
 def EditEmp():
